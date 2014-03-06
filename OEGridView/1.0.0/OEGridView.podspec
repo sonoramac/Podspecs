@@ -9,16 +9,11 @@ Pod::Spec.new do |s|
 	s.framework = 'QuartzCore'
 	s.requires_arc = true
 
-  def s.post_install(target_installer)
-    project = target_installer.project
-    project.objects.each do |obj|
-      if obj.isa.to_s == "PBXBuildFile"
-        fileRef = obj.to_hash["fileRef"]
-        file_name = project.objects_by_uuid[fileRef].pathname.basename.to_s
-        if ["NSColor+OEAdditions.m"].include?(file_name)
-          obj.settings.delete('COMPILER_FLAGS')
-        end
-      end
+    non_arc_files = 'NSColor+OEAdditions.{h,m}'
+    s.exclude_files = non_arc_files
+    
+    s.subspec 'no-arc' do |sna|
+      sna.requires_arc = false
+      sna.source_files = non_arc_files
     end
-  end
 end
