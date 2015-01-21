@@ -6,10 +6,11 @@ Pod::Spec.new do |s|
 	s.homepage = 'https://github.com/sonoramac/SPMediaKeyTap'
 	s.authors = {'Joachim Bengtsson' => 'joachimb@gmail.com'}
 	s.source = { :git => 'git://github.com/sonoramac/SPMediaKeyTap.git' }
+	s.requires_arc = false
 	s.subspec 'SPMediaKeyTapBase' do |ss|
-    	ss.source_files = 'SPMediaKeyTap.{h,m}'
-  	end
-  	s.subspec 'InvocationGrabbing' do |ss|
-    	ss.source_files = 'SPInvocationGrabbing/NSObject+SPInvocationGrabbing.{h,m}'
-  	end
+		ss.source_files = 'SPMediaKeyTap.{h,m}'
+	end
+	s.subspec 'InvocationGrabbing' do |ss|
+		ss.source_files = 'SPInvocationGrabbing/NSObject+SPInvocationGrabbing.{h,m}'
+	end
 end
